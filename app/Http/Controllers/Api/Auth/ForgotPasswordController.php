@@ -18,6 +18,8 @@ class ForgotPasswordController extends Controller
         ]);
         $email = $request->email;
 
+
+        
         if(User::where('email', $email)->doesntExist()){
             return response(['message'=>'Email Does not exists.'], 200);
         }
@@ -46,7 +48,6 @@ class ForgotPasswordController extends Controller
 
         $token = $request->token;
         $passwordRest = DB::table('password_resets')->where('token', $token)->first();
-
         // Verify
         if(!$passwordRest){
             return response(['message' => 'Token Not Found.'], 200);

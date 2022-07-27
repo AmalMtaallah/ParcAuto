@@ -14,13 +14,15 @@ class RegisterController extends Controller
             'name' => 'required',
             'email' => 'required|unique:users',
             'password' => 'required|confirmed',
+            'cin' => 'required'
         ]);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' =>Hash::make($request->password),
+            'cin'=>$request->cin,
         ]);
 
-        return response(['message' => 'User Successfully Register.'], 200);
+        return response(['message' => 'User Successfully Register.'],200);
     }
 }

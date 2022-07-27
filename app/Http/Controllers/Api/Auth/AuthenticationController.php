@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticationController extends Controller
 {
+  
+  
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -29,14 +32,29 @@ class AuthenticationController extends Controller
         return response([
             'id' => $user->id,
             'name' => $user->name,
+            'prenom' => $user->prenom,
+            'cin' => $user->cin,
             'email' => $user->email,
+            'image'=>$user->image,
+            'usertype'=>$user->usertype,
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,
             'token' => $token->accessToken,
             'token_expires_at' => $token->token->expires_at,
         ], 200);
     }
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
     public function logout(Request $request)
     {
         $this->validate($request, [
